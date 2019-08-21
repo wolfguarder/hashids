@@ -1,0 +1,36 @@
+{
+    "name": "wolfguard/hashids",
+    "description": "Original hashids/hashids clone. Generate short, unique, non-sequential ids (like YouTube and Bitly) from numbers",
+    "keywords": ["hashids", "hashid", "hash", "ids", "youtube", "bitly", "encode", "decode", "obfuscate"],
+    "homepage": "http://hashids.org/php",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ivan Akimov",
+            "email": "ivan@barreleye.com",
+            "homepage": "https://twitter.com/IvanAkimov"
+        },
+        {
+            "name": "Vincent Klaiber",
+            "email": "hello@vinkla.com",
+            "homepage": "https://vinkla.com"
+        }
+    ],
+    "require": {
+        "php": "^5.6.4 || ^7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Hashids\\": "src/"
+        }
+    },
+    "config": {
+        "preferred-install": "dist"
+    },
+    "suggest": {
+       "ext-bcmatch": "Required to use BC Math arbitrary precision mathematics (*).",
+       "ext-gmp": "Required to use GNU multiple precision mathematics (*)."
+     },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
