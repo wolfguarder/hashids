@@ -33,7 +33,7 @@ class Math
      */
     public static function add($a, $b)
     {
-        if (function_exists('gmp_add')) {
+    	if (function_exists('gmp_add')) {
             return gmp_add($a, $b);
         }
 
@@ -41,7 +41,9 @@ class Math
             return bcadd($a, $b, 0);
         }
 
-        throw new RuntimeException('Missing BC Math or GMP extension.');
+	    return $a + $b;
+
+        //throw new RuntimeException('Missing BC Math or GMP extension.');
     }
 
     /**
@@ -64,7 +66,9 @@ class Math
             return bcmul($a, $b, 0);
         }
 
-        throw new RuntimeException('Missing BC Math or GMP extension.');
+	    return $a * $b;
+
+        //throw new RuntimeException('Missing BC Math or GMP extension.');
     }
 
     /**
@@ -79,7 +83,7 @@ class Math
      */
     public static function divide($a, $b)
     {
-        if (function_exists('gmp_div_q')) {
+	    if (function_exists('gmp_div_q')) {
             return gmp_div_q($a, $b);
         }
 
@@ -87,7 +91,9 @@ class Math
             return bcdiv($a, $b, 0);
         }
 
-        throw new RuntimeException('Missing BC Math or GMP extension.');
+	    return floor($a / $b);
+
+        //throw new RuntimeException('Missing BC Math or GMP extension.');
     }
 
     /**
@@ -102,7 +108,7 @@ class Math
      */
     public static function mod($n, $d)
     {
-        if (function_exists('gmp_mod')) {
+	    if (function_exists('gmp_mod')) {
             return gmp_mod($n, $d);
         }
 
@@ -110,7 +116,19 @@ class Math
             return bcmod($n, $d);
         }
 
-        throw new RuntimeException('Missing BC Math or GMP extension.');
+	    $take = 4;
+	    $mod = '';
+	    do
+	    {
+		    $a = (int)$mod.substr( $n, 0, $take );
+		    $n = substr( $n, $take );
+		    $mod = $a % $d;
+	    }
+	    while ( strlen($n) );
+
+	    return (int)$mod;
+
+	    //throw new RuntimeException('Missing BC Math or GMP extension.');
     }
 
     /**
@@ -125,7 +143,7 @@ class Math
      */
     public static function greaterThan($a, $b)
     {
-        if (function_exists('gmp_cmp')) {
+    	if (function_exists('gmp_cmp')) {
             return gmp_cmp($a, $b) > 0;
         }
 
@@ -133,7 +151,9 @@ class Math
             return bccomp($a, $b, 0) > 0;
         }
 
-        throw new RuntimeException('Missing BC Math or GMP extension.');
+	    return $a > $b;
+
+        //throw new RuntimeException('Missing BC Math or GMP extension.');
     }
 
     /**
